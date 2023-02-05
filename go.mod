@@ -1,4 +1,4 @@
-module github.com/IkehAkinyemi/crud-service
+module github.com/IkehAkinyemi/grpc-service
 
 go 1.19
 
