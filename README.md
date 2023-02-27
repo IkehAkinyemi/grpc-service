@@ -64,7 +64,7 @@ To run them, use the default `go test` command:
 go test ./...
 ```
 
-## Miscellanous
+## Miscellaenous
 I added a sample project out of curiosity comparing the size of serialized data output from JSON, XML and Protocol Buffer serialization.
 Check the [sizecompare](./cmd/sizecompare/) directory for the comparison functionalities.
 
