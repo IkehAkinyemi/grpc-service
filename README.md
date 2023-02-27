@@ -64,6 +64,46 @@ To run them, use the default `go test` command:
 go test ./...
 ```
 
+## Miscellanous
+I added a sample project out of curiosity comparing the size of serialized data output from JSON, XML and Protocol Buffer serialization.
+Check the [sizecompare](./cmd/sizecompare/) directory for the comparison functionalities.
+
+```sh
+# run to see output for each serialization
+go run ./cmd/sizecompare/ 
+```
+
+### Benchmark Testing
+Run benchmark test function multiple times to compares each output against each, assessing the code’s overall performance level.
+```
+cd ./cmd/sizecompare && go test -bench=. -count 5 -run=^# -benchmem
+```
+
+Outcome on my hardware:
+
+```sh
+goos: darwin
+goarch: arm64
+pkg: github.com/IkehAkinyemi/grpc-service/cmd/sizecompare
+BenchmarkSerializeToJSON-8       1667995               707.0 ns/op           480 B/op          1 allocs/op
+BenchmarkSerializeToJSON-8       1686784               713.0 ns/op           480 B/op          1 allocs/op
+BenchmarkSerializeToJSON-8       1672173               715.5 ns/op           480 B/op          1 allocs/op
+BenchmarkSerializeToJSON-8       1673404               717.4 ns/op           480 B/op          1 allocs/op
+BenchmarkSerializeToJSON-8       1668206               719.9 ns/op           480 B/op          1 allocs/op
+BenchmarkSerializeToXML-8         489782              2341 ns/op            5216 B/op         10 allocs/op
+BenchmarkSerializeToXML-8         492550              2342 ns/op            5216 B/op         10 allocs/op
+BenchmarkSerializeToXML-8         496192              2340 ns/op            5216 B/op         10 allocs/op
+BenchmarkSerializeToXML-8         487257              2343 ns/op            5216 B/op         10 allocs/op
+BenchmarkSerializeToXML-8         497938              2360 ns/op            5216 B/op         10 allocs/op
+BenchmarkSerializeToProto-8     11307571               107.4 ns/op           384 B/op          1 allocs/op
+BenchmarkSerializeToProto-8     10754984               105.6 ns/op           384 B/op          1 allocs/op
+BenchmarkSerializeToProto-8     11198925               106.2 ns/op           384 B/op          1 allocs/op
+BenchmarkSerializeToProto-8      9485875               107.0 ns/op           384 B/op          1 allocs/op
+BenchmarkSerializeToProto-8     10498231               107.6 ns/op           384 B/op          1 allocs/op
+PASS
+ok      github.com/IkehAkinyemi/grpc-service/cmd/sizecompare    22.960s
+```
+
 ## Security
 
 If you discover a security vulnerability within gRPC-service, please raise an issue on this repository or send an e-mail to **mrikehchukwuka@gmail.com**.
